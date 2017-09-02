@@ -8,6 +8,12 @@ var cheerio = require("cheerio");
 // Initialize Express
 var app = express();
 
+// Set up a static folder (public) for our web app
+
+app.use(express.static("public/javascript")); 
+// Set up a static folder (view) for our web app
+app.use(express.static("views"));
+
 // Database configuration
 var databaseUrl = "scraperHW";
 var collections = ["scrapedData"];
