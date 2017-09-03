@@ -47,7 +47,6 @@ app.get("/all", function(req, res) {
 
 // Scrape data from one site and place it into the mongodb db
 app.get("/scrape", function(req, res) {
-  //empty table     
     db.scrapedData.remove({});
   // Make a request for the news section of ycombinator
   request("http://www.newsmax.com/us/", function(error, response, html) {
@@ -84,14 +83,13 @@ app.get("/scrape", function(req, res) {
     });
   });
 
-  // When "Scrape Complete"
-    // Query: In our database, go to the animals collection, then "find" everything
+    // Find all results from the scrapedData collection in the db
   db.scrapedData.find({}, function(error, found) {
-    // Log any errors if the server encounters one
+    // Throw any errors to the console
     if (error) {
       console.log(error);
     }
-    // Otherwise, send the result of this query to the browser
+    // If there are no errors, send the data to the browser as json
     else {
       res.json(found);
     }
