@@ -41,14 +41,17 @@ function displayScrapedArticles(data) {
     }
 }
 $("#dispalyArticles").on("click", function () {
-$.getJSON("/all", function (data) {
-    // Call our function to generate a table body
-    displayScrapedArticles(data);
-    console.log(data);
-});
+    //ask the back end for json with all articles from the scrapedData collection
+    $.getJSON("/all", function (data) {
+        // Call our function to generate a table body
+        displayScrapedArticles(data);
+        console.log(data);
+    });
 });
 // When user clicks the scrape button, display the table sorted by name
 $("#scrape").on("click", function () {
+    //hide the opening text 
+    $("#noArticles").hide();
     //clearing out the table of old articles
     $(".card-deck").empty();
     // Do an api call to the back end for json will scrape the data from the webpage 

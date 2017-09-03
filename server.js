@@ -1,6 +1,8 @@
 // Dependencies
 var express = require("express");
 var mongojs = require("mongojs");
+var exphbs = require("express-handlebars");
+var mongoose = require("mongoose");
 // Require request and cheerio. This makes the scraping possible
 var request = require("request");
 var cheerio = require("cheerio");
@@ -8,12 +10,20 @@ var cheerio = require("cheerio");
 // Initialize Express
 var app = express();
 
+// Sets up the Express app to handle data parsing
+/*app.use(logger("dev"));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));*/
+
 // Set up a static folder (public) for our web app
-app.use(express.static("public/javascript"));
-// Set up a static folder (public) for our web app
-app.use(express.static("public/stylesheets"));
+app.use(express.static("public"));
 // Set up a static folder (view) for our web app
-app.use(express.static("views"));
+//app.use(express.static("views"));
+
+// Set Handlebars as the default templating engine.
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
 // Database configuration
 var databaseUrl = "scraperHW";
@@ -25,20 +35,23 @@ db.on("error", function(error) {
   console.log("Database Error:", error);
 });
 
-// Main route (simple Hello World Message)
+/* Basic route that sends the user first to the AJAX Page from the htmlRoutes. The get to show the html and css on the website*/
+//require("./app/routing/routes.js")(app);
+
+// Main route (to render the webpage with handlebars)
 app.get("/", function(req, res) {
-  res.send("Hello world");
+  res.render("index");
 });
 
 // Retrieve data from the db
 app.get("/all", function(req, res) {
-  // Find all results from the scrapedData collection in the db
+  //  Query: In our database, go to the scrapedData collection, then "find" everything
   db.scrapedData.find({}, function(error, found) {
     // Throw any errors to the console
     if (error) {
       console.log(error);
     }
-    // If there are no errors, send the data to the browser as json
+    // If there are no errors, send the result of this query to the browser as json
     else {
       res.json(found);
     }
@@ -83,17 +96,6 @@ app.get("/scrape", function(req, res) {
     });
   });
 console.log(res);
-    // Find all results from the scrapedData collection in the db
- /* db.scrapedData.find({}, function(error, found) {
-    // Throw any errors to the console
-    if (error) {
-      console.log(error);
-    }
-    // If there are no errors, send the data to the browser as json
-    else {
-      res.json(found);
-    }
-  });*/
 });
 
 
