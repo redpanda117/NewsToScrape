@@ -40,23 +40,24 @@ function displayScrapedArticles(data) {
         $(".card-deck").append($newCard);
     }
 }
-
-/*$.getJSON("/all", function (data) {
+$("#dispalyArticles").on("click", function () {
+$.getJSON("/all", function (data) {
     // Call our function to generate a table body
-    //displayScrapedArticles(data);
-});*/
-
+    displayScrapedArticles(data);
+    console.log(data);
+});
+});
 // When user clicks the scrape button, display the table sorted by name
 $("#scrape").on("click", function () {
     //clearing out the table of old articles
     $(".card-deck").empty();
     // Do an api call to the back end for json will scrape the data from the webpage 
-    $.getJSON("/scrape", function (data) {
-        displayScrapedArticles(data);
-        console.log(data);
+    $.getJSON("/scrape", function () {
+        //displayScrapedArticles(data);
+        console.log("Articles are scraped");
     });
 });
 
-$("commentButton").on("click", function(){
+/*$("commentButton").on("click", function(){
     
-});
+})*/

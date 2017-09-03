@@ -49,7 +49,7 @@ app.get("/all", function(req, res) {
 app.get("/scrape", function(req, res) {
     db.scrapedData.remove({});
   // Make a request for the news section of ycombinator
-  request("http://www.newsmax.com/us/", function(error, response, html) {
+  request("http://www.newsmax.com/newsfront/", function(error, response, html) {
     // Load the html body from request into cheerio
     var $ = cheerio.load(html);
     // For each element with a "tag-item" class
@@ -61,7 +61,7 @@ app.get("/scrape", function(req, res) {
       var image = $(element).find("img").attr("src");  
         
       // If this found element had both a title and a link
-      if (title && link) {
+      if (title && link && summary && image) {
         // Insert the data in the scrapedData db
         db.scrapedData.insert({
           title: title,
@@ -82,9 +82,9 @@ app.get("/scrape", function(req, res) {
       }
     });
   });
-
+console.log(res);
     // Find all results from the scrapedData collection in the db
-  db.scrapedData.find({}, function(error, found) {
+ /* db.scrapedData.find({}, function(error, found) {
     // Throw any errors to the console
     if (error) {
       console.log(error);
@@ -93,7 +93,7 @@ app.get("/scrape", function(req, res) {
     else {
       res.json(found);
     }
-  });
+  });*/
 });
 
 
