@@ -9,8 +9,9 @@ var cheerio = require("cheerio");
 var app = express();
 
 // Set up a static folder (public) for our web app
-
-app.use(express.static("public/javascript")); 
+app.use(express.static("public/javascript"));
+// Set up a static folder (public) for our web app
+app.use(express.static("public/stylesheets"));
 // Set up a static folder (view) for our web app
 app.use(express.static("views"));
 
@@ -46,6 +47,8 @@ app.get("/all", function(req, res) {
 
 // Scrape data from one site and place it into the mongodb db
 app.get("/scrape", function(req, res) {
+  //empty table     
+    db.scrapedData.remove({});
   // Make a request for the news section of ycombinator
   request("http://www.newsmax.com/us/", function(error, response, html) {
     // Load the html body from request into cheerio
@@ -81,8 +84,18 @@ app.get("/scrape", function(req, res) {
     });
   });
 
-  // Send a "Scrape Complete" message to the browser
-  res.send("Scrape Complete");
+  // When "Scrape Complete"
+    // Query: In our database, go to the animals collection, then "find" everything
+  db.scrapedData.find({}, function(error, found) {
+    // Log any errors if the server encounters one
+    if (error) {
+      console.log(error);
+    }
+    // Otherwise, send the result of this query to the browser
+    else {
+      res.json(found);
+    }
+  });
 });
 
 
