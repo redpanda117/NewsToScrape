@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/redpanda117/NewsToScrape.git"
   },
-  "author": "",
+  "author": "tina nguyen",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/redpanda117/NewsToScrape/issues"
@@ -26,5 +26,6 @@
     "mongoose": "^4.11.9",
     "morgan": "^1.8.2",
     "request": "^2.81.0"
-  }
+  },
+  "devDependencies": {}
 }

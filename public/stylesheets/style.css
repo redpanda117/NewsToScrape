@@ -1,3 +1,7 @@
+#container{
+    min-height: 100%;
+    position: relative;
+}
 
 body {
     background-color: #222222;
@@ -55,13 +59,15 @@ a:hover {
 #noArticles{
     color: #ffffff;
     margin-top: 10px;
+    margin-bottom: 483px;
 }
 
 .articleCard{
     margin-top: 10px;
     padding-top: 10px;
+    margin-bottom: 10px;
     outline: 5px solid #222222;
-    background-color: white;
+    background-color: #ffffff;
 }
 
 #commentButton,
@@ -73,3 +79,20 @@ a:hover {
     margin-right:5px;
 }
 
+footer {
+   text-align: center;
+   background-color: #00BC8C; 
+   color: #000000;
+   border-top: 5px solid #222222; 
+   padding-top:7px;
+   padding-bottom:1px;
+}
+
+#divider{
+    padding-left:20px;
+    padding-right:20px;    
+}
+
+#source{
+  color: #000000;   
+}
