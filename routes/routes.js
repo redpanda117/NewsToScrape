@@ -47,7 +47,7 @@ module.exports = function (app) {
                 var link = $(element).children("a").attr("href");
                 var summary = $(element).attr("id", "copy_small").text();
                 var image = $(element).find("img").attr("src");
-
+                
                 // If this found element had both a title and a link
                 if (title && link && summary && image) {
                     // Insert the data in the scrapedData db
