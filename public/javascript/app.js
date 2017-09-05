@@ -30,7 +30,7 @@ function displayScrapedArticles(data) {
         $newComment.attr("id", "commentButton");
         $newComment.attr("data-toggle", "modal");
         $newComment.attr("data-target", "#comments");
-        $newComment.text("Add a Comment");
+        $newComment.text("Add Comment");
 
         //appending title,summary,link to body of card
         $newCardBody.append($newTitle);

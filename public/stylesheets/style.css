@@ -1,25 +1,6 @@
-#commentButton,
-.originalArticleLink{
- margin-top:5px;   
-}
-.originalArticleLink{
-    margin-left: 5px;
-}
 
 body {
     background-color: #222222;
-}
-
-.articleCard{
-    margin-top: 10px;
-    padding-top: 10px;
-    outline: 5px solid #222222;
-    background-color: white;
-}
-
-.card-text, 
-.card-title{
-    color: #000000
 }
 
 .navbar-expand-lg {
@@ -39,7 +20,7 @@ body {
 #scrapeButton{
  padding:10px;
  margin-top: 10px;
- margin-left:10px;    
+ margin-left:10px;  
 }
 
 .modal {    
@@ -51,7 +32,12 @@ a:hover {
 }
 
 .navbar-toggler-icon{
-    background-color: #ffffff; 
+  padding-top: 3.5px;    
+  color: #ffffff;
+}
+
+.icon-bar{
+    color: #ffffff;
 }
 
 .navbar-expand-lg .navbar-toggle{
@@ -64,5 +50,26 @@ a:hover {
 
 .nav-link{
     margin-top:10px;
+}
+
+#noArticles{
+    color: #ffffff;
+    margin-top: 10px;
+}
+
+.articleCard{
+    margin-top: 10px;
+    padding-top: 10px;
+    outline: 5px solid #222222;
+    background-color: white;
+}
+
+#commentButton,
+.originalArticleLink{
+ margin-top:5px;   
+}
+
+.originalArticleLink{
+    margin-right:5px;
 }
 
