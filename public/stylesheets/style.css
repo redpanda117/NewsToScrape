@@ -1,10 +1,12 @@
+/* Background pattern from Subtle Patterns call Type*/
+
 #container{
     min-height: 100%;
     position: relative;
 }
 
 body {
-    background-color: #222222;
+    background-image: url("../images/type/type_@2X.png");
 }
 
 .navbar-expand-lg {
@@ -83,7 +85,7 @@ footer {
    text-align: center;
    background-color: #00BC8C; 
    color: #000000;
-   border-top: 5px solid #222222; 
+   border-top: 5px solid #1C1C1C; 
    padding-top:7px;
    padding-bottom:1px;
 }
