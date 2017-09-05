@@ -2,6 +2,8 @@
 var express = require("express");
 var mongojs = require("mongojs");
 var exphbs = require("express-handlebars");
+var bodyParser = require("body-parser");
+var logger = require("morgan");
 var mongoose = require("mongoose");
 // Require request and cheerio. This makes the scraping possible
 var request = require("request");
@@ -11,10 +13,10 @@ var cheerio = require("cheerio");
 var app = express();
 
 // Sets up the Express app to handle data parsing
-/*app.use(logger("dev"));
+app.use(logger("dev"));
 app.use(bodyParser.urlencoded({
   extended: false
-}));*/
+}));
 
 // Set up a static folder (public) for our web app
 app.use(express.static("public"));

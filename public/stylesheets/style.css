@@ -1,3 +1,68 @@
-#commentButton{
-    margin-top: 10px;
+#commentButton,
+.originalArticleLink{
+ margin-top:5px;   
 }
+.originalArticleLink{
+    margin-left: 5px;
+}
+
+body {
+    background-color: #222222;
+}
+
+.articleCard{
+    margin-top: 10px;
+    padding-top: 10px;
+    outline: 5px solid #222222;
+    background-color: white;
+}
+
+.card-text, 
+.card-title{
+    color: #000000
+}
+
+.navbar-expand-lg {
+   background-color: #00BC8C;
+    
+}
+
+.navbar-brand,
+.nav-link{
+    color: #ffffff;
+}
+
+.nav-link{
+    margin-left:10px;
+}
+
+#scrapeButton{
+ padding:10px;
+ margin-top: 10px;
+ margin-left:10px;    
+}
+
+.modal {    
+  text-align: center;
+}
+
+a:hover {
+    color: #375A7F;
+}
+
+.navbar-toggler-icon{
+    background-color: #ffffff; 
+}
+
+.navbar-expand-lg .navbar-toggle{
+    padding-bottom:25px;
+}
+
+.navbar-expand-lg .navbar-collapse{
+    border-color: #ffffff;
+}
+
+.nav-link{
+    margin-top:10px;
+}
+
