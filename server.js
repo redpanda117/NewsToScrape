@@ -15,7 +15,7 @@ var request = require("request");
 var cheerio = require("cheerio");
 
 //requiring the models
-var Chat= require("./models/chat.js");
+var Chat= require("./models/note.js");
 var Articles= require("./models/articles.js");
 
 // Initialize Express
@@ -38,7 +38,10 @@ app.use(express.static("public"));
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-mongoose.connect("mongodb://localhost/scraperHW")
+//mongoose localhost connection
+mongoose.connect("mongodb://localhost/scraperHW");
+//mongoose heroku connection
+//mongoose.connect("mongodb://heroku_hdxr7rzc:6uepj4hgr1rocfshu35dofckm4@ds121464.mlab.com:21464/heroku_hdxr7rzc")
 var db = mongoose.connection;
 
 //show mongoose error

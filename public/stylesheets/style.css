@@ -67,6 +67,7 @@ a:hover {
 .card{
     border: 0px;
 }
+
 #articleCard{
     margin-top: 10px;
     padding-top: 10px;
@@ -83,6 +84,7 @@ a:hover {
 #linkButton{
     margin-bottom: 10px;
 }
+
 footer {
    text-align: center;
    background-color: #00BC8C; 
