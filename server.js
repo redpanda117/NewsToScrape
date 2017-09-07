@@ -31,6 +31,8 @@ app.use(bodyParser.urlencoded({
 
 // Set up a static folder (public) for our web app
 app.use(express.static("public"));
+//the css and image
+//app.use(express.static(path.join(__dirname, "/public")));
 
 // Set Handlebars as the default templating engine.
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));

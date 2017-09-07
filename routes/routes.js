@@ -13,8 +13,11 @@ var Article = require('../models/articles.js');
 
     // Main route (to render the webpage with handlebars)
     router.get("/", function (req, res) {
-        res.render("index");
-    });
+        Article.find({})
+        .then(function(articles){
+        res.render("index",{articles: articles});
+        })
+        });
 
     // Retrieve data from the db
      router.get("/all", function (req, res) {

@@ -20,9 +20,20 @@
     <h1 id="noArticles">There are no articles please click the scrape article button to see the latest news</h1>
     <div class="card-deck">
         <!--where the articles wil populate-->
-
+    {{#each articles}}
+        <div class="col-md-4" id= "articleCard"> 
+        <div data_id="{{this._id}}" class="card">
+            <img class="card-img-top" class= "img-responsive" src="{{this.image}}" alt="This article has no image">
+            <div class="card-block">
+                <h4 class="card-title">{{this.title}}</h4>
+                <p class="card-text">{{this.summary}}</p>
+                  <button class="btn btn-info" href="{{this.link}}">See Full Article</button>
+                  <button class="btn btn-info" id="commentButton" data-toggle = "modal" data-target="#comments">Add Comment</button>
+            </div>
+            </div>      
     </div>
-
+{{/each}}
+        
     <footer>
         <p>Copyright &copy; 2017 Tina Nguyen<span id="divider"> |</span> Articles are scraped from <a href="http://www.newsmax.com/newsfront/" id="source">http://www.newsmax.com/newsfront/</a></p>
 
@@ -44,11 +55,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
     <!--modal to add comments-->
     <div class="modal" id="comments" role="dialog">
         <div class="modal-dialog">
