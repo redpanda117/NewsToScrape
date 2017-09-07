@@ -1,3 +1,12 @@
+//get any articles if in database
+    $.getJSON("/all", function (data) {
+        // Call our function to generate a table body
+        if(data != 0){
+        $("#noArticles").hide();    
+        displayScrapedArticles(data);
+        console.log(data);
+        }
+        });
 //a function that takes the information from the database and display it onto the webpage
 function displayScrapedArticles(data) {
     //loop through the mongo database to get all of the data 
@@ -15,7 +24,7 @@ function displayScrapedArticles(data) {
         //adding source image 
         $newImg.addClass('card-img-top');
         $newImg.addClass("img-responsive");
-        $newImg.attr("src", "http://www.newsmax.com" + data[i].image);
+        $newImg.attr("src", data[i].image);
         //adding the heading
         $newTitle.text(data[i].title);
         //add summary
@@ -58,7 +67,6 @@ $("#dispalyArticles").on("click", function () {
 });
 // When user clicks the scrape button, display the table sorted by name
 $("#scrapeButton").on("click", function () {
-    
     //clearing out the table of old articles
     $(".card-deck").empty();
     // Do an api call to the back end for json will scrape the data from the webpage 

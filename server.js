@@ -50,7 +50,10 @@ db.on("open",function(){
 });
 
 //Basic route that sends the user first to the AJAX Page from the htmlRoutes.
-require("./routes/routes.js")(app);
+//require("./routes/routes.js")(app);
+// Import routes and give the server access to them.
+var routes = require("./routes/routes.js");
+app.use("/", routes);
 
 // Listen on port 3000
 app.listen(3000, function() {

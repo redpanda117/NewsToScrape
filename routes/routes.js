@@ -1,22 +1,23 @@
+var express = require('express');
+var router = express.Router();
 var mongojs = require("mongojs");
 var request = require("request");
 var cheerio = require("cheerio");
 // Require Note and Article models
 var Article = require('../models/articles.js');
 
-module.exports = function (app) {
-    // database check
+    // Hook mongojs configuration to the database
     Article.on("error", function (error) {
         console.log("Database Error:", error);
     });
 
     // Main route (to render the webpage with handlebars)
-    app.get("/", function (req, res) {
+    router.get("/", function (req, res) {
         res.render("index");
     });
 
     // Retrieve data from the db
-    app.get("/all", function (req, res) {
+     router.get("/all", function (req, res) {
         //  Query: In our database, go to the scrapedData collection, then "find" everything
         Article.find({}, function (error, found) {
             // Throw any errors to the console
@@ -31,8 +32,8 @@ module.exports = function (app) {
     });
 
     // Scrape data from one site and place it into the mongodb db
-    app.get("/scrape", function (req, res) {
-        
+    router.get("/scrape", function (req, res) {
+       
         // Make a request for the news section of combinator
         request("http://www.newsmax.com/newsfront/", function (error, response, html) {
             // Load the html body from request into cheerio
@@ -49,7 +50,7 @@ module.exports = function (app) {
 
                 results.summary = $(element).attr("id", "copy_small").text();
 
-                results.image = $(element).find("img").attr("src");
+                results.image = "http://www.newsmax.com" +$(element).find("img").attr("src");
 
 
                 //take the scraped data to the article model
@@ -69,4 +70,6 @@ module.exports = function (app) {
             });
         });
     });
-}
+
+// Export routes for server.js to use.
+module.exports = router;
