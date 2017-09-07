@@ -64,6 +64,9 @@ a:hover {
     margin-bottom: 483px;
 }
 
+.card{
+    border: 0px;
+}
 #articleCard{
     margin-top: 10px;
     padding-top: 10px;
@@ -76,6 +79,10 @@ a:hover {
     margin-right:5px;
 }
 
+#commentButton, 
+#linkButton{
+    margin-bottom: 10px;
+}
 footer {
    text-align: center;
    background-color: #00BC8C; 

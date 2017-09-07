@@ -20,61 +20,69 @@
     <h1 id="noArticles">There are no articles please click the scrape article button to see the latest news</h1>
     <div class="card-deck">
         <!--where the articles wil populate-->
-        {{#each articles}}
-        <div class="col-md-4" id="articleCard">
-            <div data_id="{{this._id}}" class="card">
-                <img class="card-img-top" class="img-responsive" src="{{this.image}}" alt="This article has no image">
-                <div class="card-block">
-                    <h4 class="card-title">{{this.title}}</h4>
-                    <p class="card-text">{{this.summary}}</p>
-                    <a class="btn btn-info" href="{{this.link}}">See Full Article</a>
-                    <button class="btn btn-info" id="commentButton" data-toggle="modal" data-target="#comments">Add Comment</button>
-                </div>
-            </div>
-        </div>
-        {{/each}}
-        <!--     
-    <footer>
-        <p>Copyright &copy; 2017 Tina Nguyen<span id="divider"> |</span> Articles are scraped from <a href="http://www.newsmax.com/newsfront/" id="source">http://www.newsmax.com/newsfront/</a></p>
-    </footer>
-      -->
-        <!--modal confirming you have scrape articles-->
-        <div class="modal" id="confirmScrape" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Scraped Articles</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>Congratulations you have successfull scraped articles from the website http://www.newsmax.com/</p>
-                        <p>Please click on the button to see what articles where scrape.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-info" data-dismiss="modal" id="dispalyArticles">See Scrape Articles</button>
+        <div class="row">
+            {{#each articles}}
+            <div class="col-md-4" id="articleCard">
+                <div data_id="{{this._id}}" class="card">
+                    <img class="card-img-top" class="img-responsive" src="{{this.image}}">
+                    <div class="card-block">
+                        <h4 class="card-title">{{this.title}}</h4>
+                        <p class="card-text">{{this.summary}}</p>
+                        <a class="btn btn-info" href="{{this.link}}" id="linkButton">See Full Article</a>
+                        <button class="btn btn-info" id="commentButton" data-toggle="modal" data-target="#comments">Add Comment</button>
                     </div>
                 </div>
             </div>
+            {{/each}}
         </div>
-        <!--modal to add comments-->
-        <div class="modal" id="comments" role="dialog">
-            <div class="modal-dialog">
+    </div>
+</div>
 
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
+<footer>
+    <p>Copyright &copy; 2017 Tina Nguyen<span id="divider"> |</span> Articles are scraped from <a href="http://www.newsmax.com/newsfront/" id="source">http://www.newsmax.com/newsfront/</a></p>
+</footer>
 
-                        <h4 class="modal-title">Comment Section</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="exampleTextarea">Note</label>
-                            <textarea class="form-control" id="userComment" rows="5"></textarea>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" data-dismiss="modal">Submit</button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
-                    </div>
-                </div>
+
+
+<!--modal confirming you have scrape articles-->
+<div class="modal" id="confirmScrape" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Scraped Articles</h4>
+            </div>
+            <div class="modal-body">
+                <p>Congratulations you have successfull scraped articles from the website http://www.newsmax.com/</p>
+                <p>Please click on the button to see what articles where scrape.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal" id="dispalyArticles">See Scrape Articles</button>
             </div>
         </div>
+    </div>
+</div>
+<!--modal to add comments-->
+<div class="modal" id="comments" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h4 class="modal-title">Comment Section</h4>
+            </div>
+            <div class="modal-body">
+                <!--Where previews comment be display-->
+
+                <div class="form-group">
+                    <label for="exampleTextarea">Note</label>
+                    <textarea class="form-control" id="userComment" rows="5"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" data-dismiss="modal">Submit</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
