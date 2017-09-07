@@ -72,12 +72,7 @@ a:hover {
     background-color: #ffffff;
 }
 
-#commentButton,
-.originalArticleLink{
- margin-top:5px;   
-}
-
-.originalArticleLink{
+#originalArticleLink{
     margin-right:5px;
 }
 

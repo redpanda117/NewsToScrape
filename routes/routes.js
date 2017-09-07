@@ -71,6 +71,7 @@ var Article = require('../models/articles.js');
                     }
                 });
             });
+            res.redirect("/");
         });
     });
 

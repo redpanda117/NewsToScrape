@@ -27,17 +27,18 @@
             <div class="card-block">
                 <h4 class="card-title">{{this.title}}</h4>
                 <p class="card-text">{{this.summary}}</p>
-                  <button class="btn btn-info" href="{{this.link}}">See Full Article</button>
+                  <button class="btn btn-info" 
+                          href= "{{this.link}}">See Full Article</button>
                   <button class="btn btn-info" id="commentButton" data-toggle = "modal" data-target="#comments">Add Comment</button>
             </div>
             </div>      
     </div>
 {{/each}}
-        
+   <!--     
     <footer>
         <p>Copyright &copy; 2017 Tina Nguyen<span id="divider"> |</span> Articles are scraped from <a href="http://www.newsmax.com/newsfront/" id="source">http://www.newsmax.com/newsfront/</a></p>
-
     </footer>
+      -->  
     <!--modal confirming you have scrape articles-->
     <div class="modal" id="confirmScrape" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
