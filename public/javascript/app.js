@@ -14,6 +14,7 @@ $("#dispalyArticles").on("click", function () {
     $("#noArticles").hide();
     $.getJSON("/", function (data) {
         console.log(data);
+        
     });
 });
 // When user clicks the scrape button, display the table sorted by name
@@ -28,7 +29,7 @@ $("#scrapeButton").on("click", function () {
 });
 
 //add comment button is clicked get notes and display this article title.
-$(".btn-info").on("click", function () {
+$(document).on("click", ".btn-info" ,function () {
     // Save the id from artcle picked
     var thisId = $(this).attr("data_id");
     //console.log("button click");
@@ -36,6 +37,7 @@ $(".btn-info").on("click", function () {
     // Empty the notes from the note section
     $("#previousNote").empty();
     $("#currentArticleTitle").empty();
+    
     // Now make an ajax call for the Artsicle
     $.ajax({
         method: "GET",
@@ -47,30 +49,7 @@ $(".btn-info").on("click", function () {
         $("#currentArticleTitle").append("<h4 class='modal-title'>" + data.title + "</h4>");
         //adding the id to the save note button
         $("#saveNote").attr("data_id", data._id);
-        //loop to dispaly the notes in the model    
-        for (var i = 0; i < data.note.length; i++) {
-            console.log(data.note[i].body);
-            var $commentDiv = $('<div>');
-            var $noteBlock = $('<div class="card-block">');
-            var $noteText = $('<blockquote class="card-blockquote">');
-            var $previousComment = $('<p class="noteData">');
-
-            //comment div
-            $commentDiv.attr("id", "notes");
-            $commentDiv.addClass("card card-outline-danger");
-            $commentDiv.attr("data-id", data.note[i]._id);
-
-            //notes in database
-            $previousComment.text(data.note[i].body);
-
-            $noteText.append($previousComment);
-            $noteBlock.append($noteText);
-            $commentDiv.append($noteBlock);
-
-            $("#previousNote").prepend($commentDiv);
-
-        }
-
+        displayNotes(data.note)
     });
 })
 
@@ -109,6 +88,35 @@ $(document).on("click", "#notes", function () {
         url: "/delete/" + thisId
 
     }).done(function (data) {
-      console.log("hi");
+        //this
+        console.log("note deleted");
     })
 })
+
+function displayNotes(data){
+            console.log(data);
+    //loop to dispaly the notes in the model  
+        for (var i = 0; i < data.length; i++) {
+            console.log(data[i].body);
+            var $commentDiv = $('<div>');
+            var $noteBlock = $('<div class="card-block">');
+            var $noteText = $('<blockquote class="card-blockquote">');
+            var $previousComment = $('<p class="noteData">');
+
+            //comment div
+            $commentDiv.attr("id", "notes");
+            $commentDiv.addClass("card card-outline-danger");
+            $commentDiv.attr("data-dismiss", "modal")
+            $commentDiv.attr("data-id", data[i]._id);
+
+            //notes in database
+            $previousComment.text(data[i].body);
+
+            $noteText.append($previousComment);
+            $noteBlock.append($noteText);
+            $commentDiv.append($noteBlock);
+
+            $("#previousNote").prepend($commentDiv);
+
+        }
+}

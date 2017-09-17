@@ -11,25 +11,29 @@ var ArticleSchema = new Schema({
         type: String,
         required: true
     },
-    
+
     link: {
         type: String,
         required: true,
         unique: true
     },
     summary: {
-        type:String,
-        required: true,
-        unique: true
-    },
-    image:{
         type: String,
         required: true,
         unique: true
     },
-     note: [{ 
-         type: Schema.Types.ObjectId, 
-         ref: "Note" 
+    image: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    date: {
+        type: Date,
+        default: Date.now
+    },
+    note: [{
+        type: Schema.Types.ObjectId,
+        ref: "Note"
      }]
 });
 

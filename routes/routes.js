@@ -33,6 +33,7 @@ router.get("/all", function (req, res) {
         // If there are no errors, send the result of this query to the browser as json
         else {
             res.json(found);
+            res.redirect('/');
         }
     });
 });
@@ -77,6 +78,7 @@ router.get("/scrape", function (req, res) {
     });
 });
 
+//getting note for specific article
 router.get("/articles/:id", function (req, res) {
     Article.findOne({
             "_id": req.params.id
