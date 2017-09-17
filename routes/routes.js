@@ -109,6 +109,8 @@ router.post("/articles/:id", function (req, res) {
         // Otherwise
         else {
             // Use the article id to find and update it's note
+            //need "{new: true}" in our call,
+            // or else our query will return the object as it was before it was updated
             Article.findOneAndUpdate({
                     _id: req.params.id
                 }, {
@@ -130,6 +132,21 @@ router.post("/articles/:id", function (req, res) {
                 });
         }
     });
+});
+
+//delete note by id
+router.post("/delete/:id", function (req, res) {
+    Note.findByIdAndRemove({
+            _id: req.params.id
+        },
+        function (error) {
+            // Throw any errors to the console
+            if (error) {
+                console.log(error);
+            }
+
+        });
+
 });
 
 // Export routes for server.js to use.
