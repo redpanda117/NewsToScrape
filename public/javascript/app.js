@@ -1,12 +1,12 @@
 //get any articles if in database if there are any articles in the database then hide the text that state that there are no articles
-    $.getJSON("/all", function (data) {
-        // Call our function to generate a table body
-        if(data != 0){
-        $("#noArticles").hide();    
+$.getJSON("/all", function (data) {
+    // Call our function to generate a table body
+    if (data != 0) {
+        $("#noArticles").hide();
         //displayScrapedArticles(data);
         console.log(data);
-        }
-        });
+    }
+});
 
 $("#dispalyArticles").on("click", function () {
     //ask the back end for json with all articles from the scrapedData collection
@@ -27,6 +27,26 @@ $("#scrapeButton").on("click", function () {
     });
 });
 
-/*$("commentButton").on("click", function(){
-    
-})*/
+$(".btn-info").on("click", function () {
+    // Save the id from artcle picked
+    var thisId = $(this).attr("data_id");
+    console.log("butgton click");
+    console.log(thisId);
+    // Empty the notes from the note section
+    $("#previousNote").empty();
+    $("#currentArticleTitle").empty();
+    // Now make an ajax call for the Artsicle
+    $.ajax({
+        method: "GET",
+        url: "/articles/" + thisId
+        
+    }).done(function (data) {
+        console.log(data);
+    //get article title in model     
+        $("#currentArticleTitle").append("<h4 class='modal-title'>" + data.title + "</h4>");
+        
+    //loop to dispaly the notes in the model    
+        for (var i = 1; i < data.comment.length; i++){ 
+    }   
+    });
+})

@@ -6,11 +6,7 @@ var Schema = mongoose.Schema;
 
 // Article schema
 var ArticleSchema = new Schema({
-    // each of these filed are require(field need to be fill out/ cannot be left blank) and is unique(prevent duplication of articles to be svae on database).
-    _id: {
-        Schema.Types.ObjectId     
-    },
-    
+    // each of these filed are require(field need to be fill out/ cannot be left blank) and is unique(prevent duplication of articles to be svae on database).    
     title: {
         type: String,
         required: true
@@ -24,15 +20,16 @@ var ArticleSchema = new Schema({
     summary: {
         type:String,
         required: true,
-        unique:true
+        unique: true
     },
     image:{
         type: String,
-        require:true,
-        unique:true
+        required: true,
+        unique: true
     },
      comment: [{ 
-         type: Schema.Types.ObjectId, ref: 'Note' 
+         type: Schema.Types.ObjectId, 
+         ref: "Note" 
      }]
 });
 
