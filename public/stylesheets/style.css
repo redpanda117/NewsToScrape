@@ -102,3 +102,18 @@ footer {
 #source{
   color: #000000;   
 }
+
+
+#notes{
+    text-align: left;
+    outline-style: groove;
+    outline-color: #00BC8C;
+    margin-top:10px;
+}
+
+.noteData{
+    padding: 5px;
+}
+
+
+

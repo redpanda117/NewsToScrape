@@ -49,47 +49,66 @@ $(".btn-info").on("click", function () {
         $("#saveNote").attr("data_id", data._id);
         //loop to dispaly the notes in the model    
         for (var i = 0; i < data.note.length; i++) {
-        console.log(data.note[i].body);
-            var $commentDiv = $('<div class="notes">');
+            console.log(data.note[i].body);
+            var $commentDiv = $('<div>');
             var $noteBlock = $('<div class="card-block">');
             var $noteText = $('<blockquote class="card-blockquote">');
-            var $previousComment = $('<p>');
-            
+            var $previousComment = $('<p class="noteData">');
+
+            //comment div
+            $commentDiv.attr("id", "notes");
+            $commentDiv.addClass("card card-outline-danger");
+            $commentDiv.attr("data-id", data.note[i]._id);
+
             //notes in database
             $previousComment.text(data.note[i].body);
-            
+
             $noteText.append($previousComment);
             $noteBlock.append($noteText);
             $commentDiv.append($noteBlock);
-            
+
             $("#previousNote").prepend($commentDiv);
-            
+
         }
-        
+
     });
 })
 
 //save users comments 
 $(document).on("click", "#saveNote", function () {
-  // Grab the id associated with the article from the submit button
-  var thisId = $(this).attr("data_id");
-  //console.log(thisId);
-  var userInput = $("#userComment").val(); 
-  // Run a POST request to change the note, using what's entered in the inputs
-  $.ajax({
-    method: "POST",
-    url: "/articles/" + thisId,
-    data: {
-      // Value taken from note textarea
-      body: userInput
-    }
-  })
-    // With that done
-    .done(function(data) {
-      // Log the response
-      console.log(data);
-      console.log(userInput);
-    });
+    // Grab the id associated with the article from the submit button
+    var thisId = $(this).attr("data_id");
+    //console.log(thisId);
+    var userInput = $("#userComment").val();
+    // Run a POST request to change the note, using what's entered in the inputs
+    $.ajax({
+            method: "POST",
+            url: "/articles/" + thisId,
+            data: {
+                // Value taken from note textarea
+                body: userInput
+            }
+        })
+        // With that done
+        .done(function (data) {
+            // Log the response
+            console.log(data);
+            console.log(userInput);
+        });
     //empting out comment box.
     $("#userComment").val("");
+})
+
+//delete notes 
+$(document).on("click", "#notes", function () {
+    var thisId = $(this).attr("data-id");
+    //making sure thier is an id and click is working 
+    console.log(thisId);
+    $.ajax({
+        method: "POST",
+        url: "/delete/" + thisId
+
+    }).done(function (data) {
+      console.log("hi");
+    })
 })
