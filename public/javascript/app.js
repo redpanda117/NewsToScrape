@@ -27,11 +27,12 @@ $("#scrapeButton").on("click", function () {
     });
 });
 
+//add comment button is clicked get notes and display this article title.
 $(".btn-info").on("click", function () {
     // Save the id from artcle picked
     var thisId = $(this).attr("data_id");
-    console.log("butgton click");
-    console.log(thisId);
+    //console.log("button click");
+    //console.log(thisId);
     // Empty the notes from the note section
     $("#previousNote").empty();
     $("#currentArticleTitle").empty();
@@ -39,14 +40,41 @@ $(".btn-info").on("click", function () {
     $.ajax({
         method: "GET",
         url: "/articles/" + thisId
-        
+
     }).done(function (data) {
-        console.log(data);
-    //get article title in model     
+        //console.log(data);
+        //get article title in model     
         $("#currentArticleTitle").append("<h4 class='modal-title'>" + data.title + "</h4>");
+        //adding the id to the save note button
+        $("#saveNote").attr("data_id", data._id);
+        //loop to dispaly the notes in the model    
+        //for (var i = 1; i < data.comment.length; i++) {
         
-    //loop to dispaly the notes in the model    
-        for (var i = 1; i < data.comment.length; i++){ 
-    }   
+        //}
+        
     });
+})
+
+//save users comments 
+$(document).on("click", "#saveNote", function () {
+  // Grab the id associated with the article from the submit button
+  var thisId = $(this).attr("data_id");
+  //console.log(thisId);
+  var userInput = $("#userComment").val(); 
+  // Run a POST request to change the note, using what's entered in the inputs
+  $.ajax({
+    method: "POST",
+    url: "/articles/" + thisId,
+    data: {
+      // Value taken from note textarea
+      body: userInput
+    }
+  })
+    // With that done
+    .done(function(data) {
+      // Log the response
+      console.log(data);
+      console.log(userInput);
+    });
+    $("#userComment").val("");
 })

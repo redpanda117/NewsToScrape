@@ -7,9 +7,8 @@ var Schema = mongoose.Schema;
 var NoteSchema = new Schema({
   // Just a string 
  //min length prevent empty entries
-  note: {
+  body: {
     type: String,
-    require: true,
     minlength: 1
   }
 });

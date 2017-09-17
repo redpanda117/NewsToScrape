@@ -5,6 +5,7 @@ var request = require("request");
 var cheerio = require("cheerio");
 // Require Note and Article models
 var Article = require('../models/articles.js');
+var Note = require('../models/note.js');
 
 // Hook mongojs configuration to the database
 Article.on("error", function (error) {
@@ -109,9 +110,13 @@ router.post("/articles/:id", function (req, res) {
         else {
             // Use the article id to find and update it's note
             Article.findOneAndUpdate({
-                    "_id": req.params.id
+                    _id: req.params.id
                 }, {
-                    "note": doc._id
+                    $push: {
+                        note: doc._id
+                    }
+                }, {
+                    new: true
                 })
                 // Execute the above query
                 .exec(function (err, doc) {
