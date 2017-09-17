@@ -42,15 +42,29 @@ $(".btn-info").on("click", function () {
         url: "/articles/" + thisId
 
     }).done(function (data) {
-        //console.log(data);
+        console.log(data);
         //get article title in model     
         $("#currentArticleTitle").append("<h4 class='modal-title'>" + data.title + "</h4>");
         //adding the id to the save note button
         $("#saveNote").attr("data_id", data._id);
         //loop to dispaly the notes in the model    
-        //for (var i = 1; i < data.comment.length; i++) {
-        
-        //}
+        for (var i = 0; i < data.note.length; i++) {
+        console.log(data.note[i].body);
+            var $commentDiv = $('<div class="notes">');
+            var $noteBlock = $('<div class="card-block">');
+            var $noteText = $('<blockquote class="card-blockquote">');
+            var $previousComment = $('<p>');
+            
+            //notes in database
+            $previousComment.text(data.note[i].body);
+            
+            $noteText.append($previousComment);
+            $noteBlock.append($noteText);
+            $commentDiv.append($noteBlock);
+            
+            $("#previousNote").prepend($commentDiv);
+            
+        }
         
     });
 })
@@ -76,5 +90,6 @@ $(document).on("click", "#saveNote", function () {
       console.log(data);
       console.log(userInput);
     });
+    //empting out comment box.
     $("#userComment").val("");
 })
