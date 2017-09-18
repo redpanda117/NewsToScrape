@@ -14,8 +14,8 @@ Article.on("error", function (error) {
 
 // Main route (to render the webpage with handlebars)
 router.get("/", function (req, res) {
-    Article.find({}).sort({date:-1})
-        .exec(function (articles) {
+    Article.find({})
+        .then(function (articles) {
             res.render("index", {
                 articles: articles
             });
