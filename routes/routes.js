@@ -71,7 +71,7 @@ router.get("/scrape", function (req, res) {
                 }
                 // or log the doc
                 else {
-                    console.log(doc);
+                    console.log(doc);    
                 }
             });
         });

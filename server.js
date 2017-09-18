@@ -61,6 +61,6 @@ var routes = require("./routes/routes.js");
 app.use("/", routes);
 
 // Listen on port 3000
-app.listen(3000, function() {
+app.listen(port, function() {
   console.log("App running on port 3000!");
 });

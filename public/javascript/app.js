@@ -13,8 +13,7 @@ $("#dispalyArticles").on("click", function () {
     //hide the opening text 
     $("#noArticles").hide();
     $.getJSON("/", function (data) {
-        console.log(data);
-        
+        console.log(data); 
     });
 });
 // When user clicks the scrape button, display the table sorted by name
@@ -49,6 +48,7 @@ $(document).on("click", ".btn-info" ,function () {
         $("#currentArticleTitle").append("<h4 class='modal-title'>" + data.title + "</h4>");
         //adding the id to the save note button
         $("#saveNote").attr("data_id", data._id);
+        //display notes in the modals
         displayNotes(data.note)
     });
 })
@@ -93,6 +93,7 @@ $(document).on("click", "#notes", function () {
     })
 })
 
+//function to display notes in the modal
 function displayNotes(data){
             console.log(data);
     //loop to dispaly the notes in the model  
