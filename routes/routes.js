@@ -15,6 +15,7 @@ Article.on("error", function (error) {
 // Main route (to render the webpage with handlebars)
 router.get("/", function (req, res) {
     Article.find({})
+     .sort({ date: -1 })
         .then(function (articles) {
             res.render("index", {
                 articles: articles
@@ -53,7 +54,7 @@ router.get("/scrape", function (req, res) {
             // get the tittle,link,summary,image of each article enclosed in the current element and add them to the results array
             results.title = $(element).children("a").text();
 
-            results.link = $(element).children("a").attr("href");
+            results.link = "https://www.newsmax.com" + $(element).children("a").attr("href");
 
             results.summary = $(element).attr("id", "copy_small").text();
 
