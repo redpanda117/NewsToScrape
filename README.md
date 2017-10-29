@@ -5,7 +5,7 @@
  Live Site:
  https://news-to-scrape.herokuapp.com/
 
- ![App starts](public/images/type/Screenshot.jpg)
+ ![App starts](public/images/type/Screenshot.png)
 
 
  
