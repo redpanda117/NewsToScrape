@@ -41,7 +41,7 @@ app.set("view engine", "handlebars");
 //mongoose localhost connection
 //mongoose.connect("mongodb://localhost/scraperHW");
 //mongoose heroku 
-mongoose.connect("mongodb://heroku_hdxr7rzc:6uepj4hgr1rocfshu35dofckm4@ds121464.mlab.com:21464/heroku_hdxr7rzc")
+mongoose.connect("mongodb://heroku_m2pdpd2x:us1p6232iq0g1in0h7usafcpbd@ds239965.mlab.com:39965/heroku_m2pdpd2x")
 var db = mongoose.connection;
 
 //show mongoose error
