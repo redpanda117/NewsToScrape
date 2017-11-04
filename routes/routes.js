@@ -14,12 +14,24 @@ Article.on("error", function (error) {
 
 // Main route (to render the webpage with handlebars)
 router.get("/", function (req, res) {
+    var perPage = 9
+    var page = req.params.page || 1
+    
     Article.find({})
      .sort({ date: -1 })
-        .then(function (articles) {
-            res.render("index", {
-                articles: articles
-            });
+     .skip((perPage * page) - perPage)
+     .limit(perPage)
+        .then(function (err, articles) {
+            Article.count().exec(function (err, count){
+                if (error) {
+                    console.log(error);
+                }else{
+                    res.render("index", {
+                        articles: articles,
+                        pages: Math.ceil(count / perPage)
+                    });
+                }
+            })
         })
 });
 
