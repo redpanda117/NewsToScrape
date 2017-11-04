@@ -39,9 +39,9 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 //mongoose localhost connection
-//mongoose.connect("mongodb://localhost/scraperHW");
+mongoose.connect("mongodb://localhost/scraperHW");
 //mongoose heroku 
-mongoose.connect("mongodb://heroku_m2pdpd2x:us1p6232iq0g1in0h7usafcpbd@ds239965.mlab.com:39965/heroku_m2pdpd2x")
+//mongoose.connect("mongodb://heroku_m2pdpd2x:us1p6232iq0g1in0h7usafcpbd@ds239965.mlab.com:39965/heroku_m2pdpd2x")
 var db = mongoose.connection;
 
 //show mongoose error

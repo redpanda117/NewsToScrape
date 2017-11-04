@@ -1,5 +1,5 @@
 //get any articles if in database if there are any articles in the database then hide the text that state that there are no articles
-$.getJSON("/all", function (data) {
+$.getJSON("/all/:page", function (data) {
     // Call our function to generate a table body
     if (data != 0) {
         $("#noArticles").hide();

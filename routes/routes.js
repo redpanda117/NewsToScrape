@@ -14,24 +14,12 @@ Article.on("error", function (error) {
 
 // Main route (to render the webpage with handlebars)
 router.get("/", function (req, res) {
-    var perPage = 9
-    var page = req.params.page || 1
-    
     Article.find({})
      .sort({ date: -1 })
-     .skip((perPage * page) - perPage)
-     .limit(perPage)
-        .then(function (err, articles) {
-            Article.count().exec(function (err, count){
-                if (error) {
-                    console.log(error);
-                }else{
-                    res.render("index", {
-                        articles: articles,
-                        pages: Math.ceil(count / perPage)
-                    });
-                }
-            })
+        .then(function (articles) {
+            res.render("index", {
+                articles: articles
+            });
         })
 });
 
@@ -50,6 +38,26 @@ router.get("/all", function (req, res) {
         }
     });
 });
+router.get('/all/:page', function(req, res, next) {
+    var perPage = 9
+    var page = req.params.page || 1
+
+    Article
+        .find({})
+        .sort({ date: -1 })
+        .skip((perPage * page) - perPage)
+        .limit(perPage)
+        .exec(function(err, articles) {
+            Article.count().exec(function(err, count) {
+                if (err) return next(err)
+                res.render("index", {
+                    articles: articles,
+                    current: page,
+                    pages: Math.ceil(count / perPage)
+                });
+                })
+            })
+        })
 
 // Scrape data from one site and place it into the mongodb db
 router.get("/scrape", function (req, res) {
